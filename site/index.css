@@ -1,6 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 @import url('http://fonts.cdnfonts.com/css/pokemon-solid');
 
+header {
+    background-color:hsl(0, 0%, 10%);
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+}
+
 body {
     font-family: 'Press Start 2P', cursive;
     font-size: 10px;
@@ -12,8 +18,12 @@ body {
     text-align: center;
     font-size: 56px;
     font-family: 'Pokemon Solid', sans-serif;
-    margin-bottom: 50px;
+    margin-bottom: 30px;
     padding: 10px;
+}
+
+.pokemon-header a {
+    text-decoration: none;
     color: rgb(245, 195, 14);
     text-shadow: -5px 5px 0 hsl(222, 48%, 44%),
         5px 5px 0 hsl(222, 48%, 44%),
@@ -38,6 +48,7 @@ body {
 
 #pokemon-listing > figure:hover {
     background-color: rgb(245,194,14);
+    transition: all 0.5s ease;
 }
 
 #pokemon-listing > figure > a {

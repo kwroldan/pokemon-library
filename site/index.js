@@ -5,12 +5,6 @@ function capitalizeFirstLetter(someString) {
     return someString.charAt(0).toUpperCase() + someString.slice(1)
 }
 
-/* function addPokemonName(pokemon){
-    const pokeName = document.createElement("figcaption")
-    pokeName.textContent = capitalizeFirstLetter(pokemon.name)
-    pokemonListing.append(pokeName)
-} */
-
 function addPokemonImage(pokemon){
     const pokePics = document.createElement("figure")
     pokePics.innerHTML = `
@@ -36,5 +30,3 @@ fetch(url)
         addPokemonImage(response);
     })
 })
-
-document.querySelector("h1").textContent = "Pokémon!"
