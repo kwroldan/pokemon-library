@@ -10,7 +10,6 @@ function changeTitle(pokemon){
     title.textContent = capitalizeFirstLetter(pokemon.name)
 }
 
-
 function addPokemonImage(pokemon){
     const div = document.createElement("div")
     div.innerHTML = `
