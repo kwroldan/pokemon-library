@@ -1,4 +1,20 @@
-.pokemon-listing {
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+@import url('http://fonts.cdnfonts.com/css/pokemon-solid');
+
+.pokemon-header {
+    text-align: center;
+    font-size: 56px;
+    font-family: 'Pokemon Solid', sans-serif;
+    margin-bottom: 50px;
+    padding: 10px;
+    color: rgb(245, 195, 14);
+    text-shadow: -5px 5px 0 hsl(222, 48%, 44%),
+        5px 5px 0 hsl(222, 48%, 44%),
+        5px 5px 0 hsl(222, 48%, 44%),
+        -5px 5px 0 hsl(222, 48%, 44%);
+}
+
+#pokemon-listing {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     grid-template-rows: repeat(10, 1fr);

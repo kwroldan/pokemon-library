@@ -5,20 +5,21 @@ function capitalizeFirstLetter(someString) {
     return someString.charAt(0).toUpperCase() + someString.slice(1)
 }
 
-function addPokemonName(pokemon){
-    const name = document.createElement("figcaption")
-    name.textContent = capitalizeFirstLetter(pokemon.name)
-    pokemonListing.append(name)
-}
+/* function addPokemonName(pokemon){
+    const pokeName = document.createElement("figcaption")
+    pokeName.textContent = capitalizeFirstLetter(pokemon.name)
+    pokemonListing.append(pokeName)
+} */
 
 function addPokemonImage(pokemon){
-    const div = document.createElement("div")
-    div.innerHTML = `
+    const pokePics = document.createElement("figure")
+    pokePics.innerHTML = `
     <a href="pokemon.html?pokemon=${pokemon.name}">
         <img src="${pokemon.sprites.front_default}" alt="${pokemon.name}" />
+        <figcaption>${capitalizeFirstLetter(pokemon.name)}</figcaption>
     </a>
     `
-    pokemonListing.append(div)
+    pokemonListing.append(pokePics)
 }
 
 const url = "https://pokeapi.co/api/v2/pokemon/?limit=50"
@@ -33,8 +34,7 @@ fetch(url)
     spinner.classList.add("hidden")
     responses.forEach(response => {
         addPokemonImage(response);
-        addPokemonName(response)
     })
 })
 
-document.querySelector("h1").textContent = "Pokemon!"
+document.querySelector("h1").textContent = "Pokémon!"
