@@ -1,5 +1,6 @@
 const $pokemon = document.querySelector("#pokemon");
 const $spinner = document.querySelector(".spinner")
+document.querySelector("h1").textContent = "Pokémon!"
 
 function capitalizeFirstLetter(someString) {
     return someString.charAt(0).toUpperCase() + someString.slice(1)

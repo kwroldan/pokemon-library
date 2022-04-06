@@ -1,5 +1,5 @@
 const pokemonListing = document.querySelector("#pokemon-listing");
-const spinner = document.querySelector(".spinner")
+const spinnerContainer = document.querySelector(".spinner-container")
 
 function capitalizeFirstLetter(someString) {
     return someString.charAt(0).toUpperCase() + someString.slice(1)
@@ -31,7 +31,7 @@ fetch(url)
     const fetches = urls.map(url => fetch(url).then(response => response.json()))
     return Promise.all(fetches)
 }).then(responses => {
-    spinner.classList.add("hidden")
+    spinnerContainer.classList.add("hidden")
     responses.forEach(response => {
         addPokemonImage(response);
     })
