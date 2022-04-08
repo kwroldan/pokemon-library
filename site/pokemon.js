@@ -15,13 +15,11 @@ function changeTitle(pokemon){
 }
 
 function addPokemonImage(pokemon){
-    const pokePics = document.createElement("div")
+    const pokePics = document.querySelector("figure")
     pokePics.innerHTML = `
-    <a href="pokemon.html?pokemon=${pokemon.name}">
-        <img src="${pokemon.sprites.front_default}" alt="${pokemon.name}" />
-    </a>
+    <img src="${pokemon.sprites.front_default}" alt="${pokemon.name}" />
+    <img src="${pokemon.sprites.back_default}" alt="${pokemon.name} from behind" />
     `
-    $pokemon.append(pokePics)
 }
 
 function displayPokemonName(pokemon){
@@ -37,11 +35,19 @@ function createListItem(abilityDetailObject){
     const li = document.createElement("li")
     li.innerHTML = ` 
     <span class="ability-name">${capitalizeFirstLetter(abilityDetailObject.name)}</span>
+    <br>
     <span class="ability-short-description">
         ${findEnglishLanguage(abilityDetailObject.effect_entries)}
     </span>
+    <hr>
     `
     pokeAbilityList.append(li)
+}
+
+function changeBackgroundColor(pokemon){
+    const typeBackground = document.querySelector(".type-background")
+    typeBackground.classList.add(`${pokemon.types[0].type.name}`)
+
 }
 
 fetch(`https://pokeapi.co/api/v2/pokemon/${queryString.get("pokemon")}`)
@@ -52,6 +58,7 @@ fetch(`https://pokeapi.co/api/v2/pokemon/${queryString.get("pokemon")}`)
         changeTitle(parsedResponse)
         displayPokemonName(parsedResponse)
         addPokemonImage(parsedResponse)
+        changeBackgroundColor(parsedResponse)
         // Get Ability Descriptions
         const abilities = parsedResponse.abilities.map(result => result.ability)
         const urls = abilities.map(object => object.url)
