@@ -28,6 +28,22 @@ function displayPokemonName(pokemon){
     pokeName.textContent = capitalizeFirstLetter(pokemon.name)
 }
 
+function findEnglishLanguage(arrayOfObjects){
+    const englishObject = arrayOfObjects.find(object => object.language.name === "en")
+    return englishObject.short_effect
+}
+
+function createListItem(abilityDetailObject){
+    const li = document.createElement("li")
+    li.innerHTML = ` 
+    <span class="ability-name">${capitalizeFirstLetter(abilityDetailObject.name)}</span>
+    <span class="ability-short-description">
+        ${findEnglishLanguage(abilityDetailObject.effect_entries)}
+    </span>
+    `
+    pokeAbilityList.append(li)
+}
+
 fetch(`https://pokeapi.co/api/v2/pokemon/${queryString.get("pokemon")}`)
     .then(response => {
         return response.json()
@@ -36,52 +52,12 @@ fetch(`https://pokeapi.co/api/v2/pokemon/${queryString.get("pokemon")}`)
         changeTitle(parsedResponse)
         displayPokemonName(parsedResponse)
         addPokemonImage(parsedResponse)
-        console.log(parsedResponse)
-        $spinner.classList.add("hidden")
-        // const abilityArray = parsedResponse.abilities.forEach(pokeAbility =>     console.log(pokeAbility));
-        const abilityArray = parsedResponse.abilities.map(pokeAbility => {
-            const li = document.createElement("li")
-            li.textContent = capitalizeFirstLetter(`${pokeAbility.ability.name}`)
-            pokeAbilityList.append(li)
-            console.log(pokeAbility.ability.name)
-        })
-        
-        /*console.log(parsedResponse)
-        console.log(parsedResponse.abilities[0].ability.name)
-        console.log(parsedResponse.abilities[1].ability.name)*/
-        /* fetch(`${parsedResponse.abilities[0].ability.url}`)
-            .then(response => {
-                return response.json()
-            })
-            .then(newResponse => {
-            console.log(newResponse.flavor_text_entries[0].flavor_text)
-            })
-
-        fetch(`${parsedResponse.abilities[1].ability.url}`)
-            .then(secondResponse => {
-                return secondResponse.json()
-            })
-            .then(secondNewResponse => {
-                console.log(secondNewResponse.flavor_text_entries[0].flavor_text)
-            })
-        */
-    })
-
-
-
-/*
-    .then(response => {
-        const pokeAbilities = response.abilities.map(ability => {
-            return fetch(ability).then(response => response.json())
-        })
-        return Promise.all(pokeAbilities)
-    })
-    .then(responses => {
-        responses.forEach(response => {
-            const li = document.createElement("li")
-            li.textContent = `${response[0]}`
-            pokeAbilityList.append(li)
+        // Get Ability Descriptions
+        const abilities = parsedResponse.abilities.map(result => result.ability)
+        const urls = abilities.map(object => object.url)
+        const fetches = urls.map(url => fetch(url).then(response => response.json()))
+        return Promise.all(fetches).then(responses => {
+            responses.forEach(response => createListItem(response))
             $spinner.classList.add("hidden")
         })
     })
-*/
