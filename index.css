@@ -98,12 +98,18 @@ h3 {
     font-size: 14px;
 }
 
+.ability-list-item {
+    display: block;
+    border-bottom: solid 2px black;
+    padding-bottom: 5px;
+}
+
 .ability-name {
     font-weight: bold;
 }
 
 li + li {
-    margin-top: 25px;
+    margin-top: 10px;
 }
 
 .spinner-container {

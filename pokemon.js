@@ -34,26 +34,24 @@ function findEnglishLanguage(arrayOfObjects){
 function createListItem(abilityDetailObject){
     const li = document.createElement("li")
     li.innerHTML = ` 
-    <span class="ability-name">${capitalizeFirstLetter(abilityDetailObject.name)}</span>
-    <br>
+    <span class="ability-name">
+        ${capitalizeFirstLetter(abilityDetailObject.name)}
+    </span>
     <span class="ability-short-description">
         ${findEnglishLanguage(abilityDetailObject.effect_entries)}
     </span>
-    <hr>
     `
+    li.classList.add("ability-list-item")
     pokeAbilityList.append(li)
 }
 
 function changeBackgroundColor(pokemon){
     const typeBackground = document.querySelector(".type-background")
     typeBackground.classList.add(`${pokemon.types[0].type.name}`)
-
 }
 
 fetch(`https://pokeapi.co/api/v2/pokemon/${queryString.get("pokemon")}`)
-    .then(response => {
-        return response.json()
-    })
+    .then(response => response.json())
     .then(parsedResponse => {
         changeTitle(parsedResponse)
         displayPokemonName(parsedResponse)
